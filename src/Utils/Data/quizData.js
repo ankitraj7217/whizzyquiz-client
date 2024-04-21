@@ -4,8 +4,8 @@ export const quizHomeIntro =
 export const quizInstructions = [
   "1. This quiz consists of 5 questions.",
   "2. You can't exit quiz midway. Please answer all questions to finish the quiz.",
-  "3. Each question is single option correct and is mandatory to answer.",
-  "4. Once you have answered the question, you can't back to previous question.",
+  "3. Each question is single option correct.",
+  "4. Once you have answered the question, you can't reset the option.",
   "5. At the conclusion of the quiz, you will receive your overall score. Additionally, a button will be provided, which upon clicking, allows you to review the explanations.",
 ];
 
