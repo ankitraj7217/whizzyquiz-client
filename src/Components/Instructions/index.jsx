@@ -25,10 +25,10 @@ const Instructions = ({
         <div className="inst-btn-group-exit">
           <CustomButton
             bgColor="transparent"
-            txtColor="#c40094"
-            hoverBgColor="#c40094"
+            txtColor="#0d0de7"
+            hoverBgColor="#2323f4"
             hovertxtColor="#fff"
-            border="2px solid #c40094"
+            border="2px solid #0d0de7"
             borderRadius="0.5rem"
             boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
             txt="Exit Quiz"
@@ -37,11 +37,11 @@ const Instructions = ({
         </div>
         <div className="inst-btn-group-continue">
           <CustomButton
-            bgColor="#c40094"
+            bgColor="#0d0de7"
             txtColor="#fff"
-            hoverBgColor="#950170"
+            hoverBgColor="#2323f4"
             hovertxtColor="#fff"
-            border="2px solid #c40094"
+            border="2px solid #0d0de7"
             borderRadius="0.5rem"
             boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
             txt="Continue"

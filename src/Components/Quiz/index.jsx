@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomButton from "../CustomButton";
 
 import "./Quiz.scss";
@@ -28,6 +28,17 @@ const Quiz = ({showQuizPage, setShowQuizPage}) => {
       return newSelectedOptions;
     });
   };
+
+  const _resetState = () =>{
+    setCurrQuestionIdx(0);
+    setShowResult(false);
+    setSelectedQuestionOption(new Array(5).fill(-1));
+    setShowResultDetails(false);
+  }
+
+  useEffect(() => {
+    _resetState();
+  }, [showQuizPage])
 
   return (
     <section className="quiz" style={{left: showQuizPage ? "-50%" : "-100%"}}>
@@ -66,10 +77,10 @@ const Quiz = ({showQuizPage, setShowQuizPage}) => {
             <div className="quiz-box-btn-group-exit">
               <CustomButton
                 bgColor="transparent"
-                txtColor="#c40094"
-                hoverBgColor="#c40094"
+                txtColor="#0d0de7"
+                hoverBgColor="#0d0de7"
                 hovertxtColor="#fff"
-                border="2px solid #c40094"
+                border="2px solid #0d0de7"
                 borderRadius="0.5rem"
                 boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
                 txt="Previous"
@@ -79,11 +90,11 @@ const Quiz = ({showQuizPage, setShowQuizPage}) => {
             </div>
             <div className="quiz-box-btn-group-continue">
               <CustomButton
-                bgColor="#c40094"
+                bgColor="#0d0de7"
                 txtColor="#fff"
-                hoverBgColor="#950170"
+                hoverBgColor="#2323f4"
                 hovertxtColor="#fff"
-                border="2px solid #c40094"
+                border="2px solid #0d0de7"
                 borderRadius="0.5rem"
                 boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
                 txt={
@@ -111,33 +122,29 @@ const Quiz = ({showQuizPage, setShowQuizPage}) => {
             <div className="quiz-result-btn-group-try-again">
               <CustomButton
                 bgColor="transparent"
-                txtColor="#c40094"
-                hoverBgColor="#c40094"
+                txtColor="#0d0de7"
+                hoverBgColor="#0d0de7"
                 hovertxtColor="#fff"
-                border="2px solid #c40094"
+                border="2px solid #0d0de7"
                 borderRadius="0.25rem"
                 boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
                 txt="Try Again"
                 disabled={currQuestionIdx === 0 ? true : false}
-                onClickFunc={() => {
-                  setShowResult(false);
-                  setCurrQuestionIdx(0);
-                }}
+                onClickFunc={_resetState}
               />
             </div>
             <div className="quiz-result-btn-group-go-to-home">
               <CustomButton
-                bgColor="#c40094"
+                bgColor="#0d0de7"
                 txtColor="#fff"
-                hoverBgColor="#950170"
+                hoverBgColor="#2323f4"
                 hovertxtColor="#fff"
-                border="2px solid #c40094"
+                border="2px solid #0d0de7"
                 borderRadius="0.25rem"
                 boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
                 txt="Go To Home"
                 onClickFunc={() => {
-                  setShowResult(false);
-                  setCurrQuestionIdx(0);
+                  _resetState();
                   setShowQuizPage(false)
                 }}
               />
@@ -145,10 +152,10 @@ const Quiz = ({showQuizPage, setShowQuizPage}) => {
             <div className="quiz-result-btn-group-explanation">
               <CustomButton
                 bgColor="transparent"
-                txtColor="#c40094"
-                hoverBgColor="#c40094"
+                txtColor="#0d0de7"
+                hoverBgColor="#0d0de7"
                 hovertxtColor="#fff"
-                border="2px solid #c40094"
+                border="2px solid #0d0de7"
                 borderRadius="0.25rem"
                 boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
                 txt="Explanation"

@@ -16,13 +16,13 @@ const Home = ({ showQuizPage, setShowQuizPage }) => {
         <h4>{quizHomeIntro}</h4>
         <div className="home-start">
           <CustomButton
-            bgColor="#c40094"
+            bgColor="#0d0de7"
             txtColor="#fff"
             hoverBgColor="#09001d"
             hovertxtColor="#fff"
             border="2px solid #fff"
             borderRadius="0.5rem"
-            boxShadow="0 0 10px #c40094"
+            boxShadow="0 0 10px #0d0de7"
             txt="Start Quiz"
             onClickFunc={() => setInstrActive(true)}
           />

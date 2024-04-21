@@ -1,57 +1,56 @@
 .inst {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    width: 480px;
-    background: #fff;
-    border-radius: 6px;
-    padding: 10px 25px;
-    opacity: 0;
-    pointer-events: none;
-    color: #282c34;
-    transition: 0.5s ease-in-out;
-  
-    padding: 2rem 2rem;
-  
-    &.active {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translate(-50%, -50%) scale(1);
-      z-index: 2;
-    }
-  
-    h2 {
-      text-align: left;
-      margin: 0rem 0rem 1rem 0rem;
-      font-size: 3rem !important;
-      color: #c40094;
-    }
-  
-    &-info {
-      text-align: left;
-  
-      &-detail {
-        display: inline-block;
-        font-size: 1rem;
-        margin: 0.5rem 0rem;
-        color: #333;
-        font-weight: 500;
-      }
-    }
-  
-    &-btn-group {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid #09001d;
-      margin-top: 1.5rem;
-      padding: 15px 0 7px;
-  
-      &-exit, &-continue {
-          width: 6rem;
-          height: 2.75rem;
-      }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 480px;
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px 25px;
+  opacity: 0;
+  pointer-events: none;
+  color: #282c34;
+  transition: 0.5s ease-in-out;
+
+  padding: 2rem 2rem;
+
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 2;
+  }
+
+  h2 {
+    text-align: left;
+    margin: 0rem 0rem 1rem 0rem;
+    font-size: 3rem !important;
+    color: #0d0de7;
+  }
+
+  &-info {
+    text-align: left;
+
+    &-detail {
+      display: inline-block;
+      font-size: 1rem;
+      margin: 0.5rem 0rem;
+      color: #333;
+      font-weight: 500;
     }
   }
-  
+
+  &-btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #09001d;
+    margin-top: 1.5rem;
+    padding: 15px 0 7px;
+
+    &-exit, &-continue {
+        width: 6rem;
+        height: 2.75rem;
+    }
+  }
+}
