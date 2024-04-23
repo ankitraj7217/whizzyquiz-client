@@ -1,0 +1,33 @@
+.result-expl {
+    &-qa {
+      margin-bottom: 1.25rem;
+  
+      * {
+        margin-bottom: 0.5rem;
+      }
+  
+      &-question {
+        font-weight: 800;
+        font-size: 1.5rem;
+      }
+  
+      &-tags {
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+  
+      &-result {
+        font-weight: 600;
+        font-size: 1rem;
+  
+        &.right {
+          color: seagreen;
+        }
+  
+        &.wrong {
+          color: red;
+        }
+      }
+    }
+  }
+  

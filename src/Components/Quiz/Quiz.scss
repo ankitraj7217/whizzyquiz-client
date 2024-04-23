@@ -192,7 +192,7 @@
       flex-direction: column;
       align-items: center;
       margin: 0 auto;
-      background: #fff;
+      background: #fdf4f4;
       padding: 1rem;
       border-radius: 0.5rem;
       z-index: 2;
@@ -211,6 +211,7 @@
 
       h2 {
         margin-bottom: 1rem;
+        color: #0d0de7;
       }
 
       &-close {
@@ -221,7 +222,7 @@
         cursor: pointer;
       }
 
-      pre {
+      &-expl {
         text-wrap: wrap;
         overflow: scroll;
       }
