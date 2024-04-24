@@ -5,11 +5,17 @@ import { quizHomeIntro } from "../../Utils/Data/quizData";
 
 import "./Home.scss";
 
-const Home = ({ showQuizPage, setShowQuizPage }) => {
+const Home = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
   const [instrActive, setInstrActive] = useState(false);
 
   return (
-    <section className="home" style={{ left: showQuizPage ? "50%" : "0%" }}>
+    <section
+      className="home"
+      style={{
+        left: showQuizPage && isDesktopScreen ? "50%" : "0%",
+        top: showQuizPage && !isDesktopScreen ? "-50%" : "0%",
+      }}
+    >
       <header className="home-header">Home</header>
       <main className="home-main">
         <h2>Welcome to WhizzyQuiz</h2>

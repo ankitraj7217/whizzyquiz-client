@@ -229,3 +229,25 @@
     }
   }
 }
+
+
+@media screen and (max-width: 720px) {
+  .quiz {
+    &-box {
+      width: 97.5vw;
+    }
+
+    &-result {
+      width: 97.5vw;
+
+      &-btn-group {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+  
+      &-details {
+        width: 97.5vw;
+      }
+    }
+  }
+}

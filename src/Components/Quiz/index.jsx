@@ -5,7 +5,7 @@ import "./Quiz.scss";
 import { getFinalResult, getRandomQuestions } from "../../Network/QuizAPICalls";
 import ResultExplanation from "./ResultExplanation";
 
-const Quiz = ({ showQuizPage, setShowQuizPage }) => {
+const Quiz = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
   const [randomQuestions, setRandomQuestions] = useState([]);
   const [currQuestionIdx, setCurrQuestionIdx] = useState(0);
   const [showResult, setShowResult] = useState(false);
@@ -37,6 +37,7 @@ const Quiz = ({ showQuizPage, setShowQuizPage }) => {
     setShowResult(false);
     setSelectedQuestionOption(new Array(5).fill(-1));
     setShowResultDetails(false);
+    setFinalScore(0);
   };
 
   useEffect(() => {
@@ -53,8 +54,6 @@ const Quiz = ({ showQuizPage, setShowQuizPage }) => {
         .then((result) => {
           setFinalScore(result?.correctCnt);
           setExplanation(result?.explanationDetails);
-
-          console.log("finalScore, explanation: ", result);
         })
         .catch((err) => console.error("Error while fetching result: ", err));
     }
@@ -99,9 +98,21 @@ const Quiz = ({ showQuizPage, setShowQuizPage }) => {
   }, [showQuizPage]);
 
   return (
-    <section className="quiz" style={{ left: showQuizPage ? "-50%" : "-100%" }}>
-      {!showResult ? (
-        <div className={`quiz-box ${showQuizPage ? "active" : ""}`}>
+    <section
+      className="quiz"
+      style={
+        isDesktopScreen
+          ? {
+              left: showQuizPage && isDesktopScreen ? "-50%" : "-100%",
+            }
+          : {
+              top: showQuizPage ? "-50%" : "0%",
+              left: showQuizPage ? "0%" : "0%",
+            }
+      }
+    >
+      
+        <div className={`quiz-box ${showQuizPage && !showResult ? "active" : ""}`}>
           <h1>Whizzy Quiz</h1>
           <div className="quiz-box-header">
             <span className="quiz-box-header__title">Software Dvpt. Quiz</span>
@@ -163,7 +174,7 @@ const Quiz = ({ showQuizPage, setShowQuizPage }) => {
             </div>
           </div>
         </div>
-      ) : (
+      {showResult && (
         <div className="quiz-result">
           <h2>Quiz Result!</h2>
           <div className="quiz-result-container">

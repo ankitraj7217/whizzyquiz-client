@@ -6,11 +6,12 @@ import "./MainPage.scss";
 
 const MainPage = () => {
   const [showQuizPage, setShowQuizPage] = useState(false);
+  const isDesktopScreen = window.innerWidth > 720;
   
   return (
     <div className="main-page">
-      <Home showQuizPage={showQuizPage} setShowQuizPage={setShowQuizPage} />
-      <Quiz showQuizPage={showQuizPage} setShowQuizPage={setShowQuizPage} />
+      <Home showQuizPage={showQuizPage} setShowQuizPage={setShowQuizPage} isDesktopScreen={isDesktopScreen} />
+      <Quiz showQuizPage={showQuizPage} setShowQuizPage={setShowQuizPage} isDesktopScreen={isDesktopScreen} />
     </div>
   );
 };

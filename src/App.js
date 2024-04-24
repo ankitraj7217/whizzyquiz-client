@@ -7,7 +7,7 @@ function App() {
 
   useEffect(() => {
     serverStartAPICall()
-      .then((res) => console.log("Server Started"))
+      .then(res => res)
       .catch((err) => console.error(err));
   }, []);
 

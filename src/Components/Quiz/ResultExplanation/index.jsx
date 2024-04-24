@@ -3,7 +3,6 @@ import React from "react";
 import "./ResultExplanation.scss";
 
 const ResultExplanation = ({ explanationDetails }) => {
-  console.log("explanationDetails: ", explanationDetails);
   return (
     <section className="result-expl">
       {explanationDetails &&

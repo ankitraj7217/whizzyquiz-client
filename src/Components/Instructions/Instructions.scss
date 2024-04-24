@@ -54,3 +54,13 @@
     }
   }
 }
+
+@media screen and (max-width: 720px) {
+  .inst {
+    width: 95vw;
+
+    h2 {
+      font-size: 2.5rem !important;
+    }
+  }
+}
