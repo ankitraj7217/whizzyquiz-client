@@ -233,12 +233,31 @@
 
 @media screen and (max-width: 720px) {
   .quiz {
+    margin-top: 2rem;
+    align-items: flex-start;
     &-box {
       width: 97.5vw;
+
+      &-header {
+        span {
+          font-size: 1rem;
+        }
+      }
+
+      &-question-txt {
+        font-size: 1rem;
+      }
+
+      &-option-list {
+        &-option {
+          font-size: 0.85rem;
+        }
+      }
     }
 
     &-result {
       width: 97.5vw;
+      top: 40%;
 
       &-btn-group {
         flex-wrap: wrap;
