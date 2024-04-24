@@ -1,3 +1,5 @@
+import { getStartServerAPI } from "../config";
+
 export const handleGetAPICall = async (urlVal, queryParams = {}, headers = {}) => {
     try {
       const url = new URL(urlVal);
@@ -35,4 +37,13 @@ export const handleGetAPICall = async (urlVal, queryParams = {}, headers = {}) =
       console.error("Error while fetching POST data: ", e);
     }
   };
+
+  export const serverStartAPICall = async() => {
+    try {
+      handleGetAPICall(getStartServerAPI);
+    } catch (e) {
+      console.error("Error while calling start server api: ", e)
+    }
+  }
+  
   
