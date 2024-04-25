@@ -15,6 +15,7 @@ const Quiz = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
   const [showResultDetails, setShowResultDetails] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [explanation, setExplanation] = useState([]);
+  const [showLoader, setShowLoader] = useState(false);
 
   const _onNextFinishClick = () => {
     if (currQuestionIdx === randomQuestions?.length - 1) {
@@ -38,6 +39,7 @@ const Quiz = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
     setSelectedQuestionOption(new Array(5).fill(-1));
     setShowResultDetails(false);
     setFinalScore(0);
+    setShowLoader(false);
   };
 
   useEffect(() => {
@@ -95,7 +97,14 @@ const Quiz = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
           console.error("Error while setting random question state: ", err)
         );
     }
+
+    const timeout = setTimeout(() => {
+      setShowLoader(true);
+    }, 1000); // Delay rendering for 1 second
+
+    return () => clearTimeout(timeout); // Clean up the timeout on component unmount
   }, [showQuizPage]);
+
 
   return (
     <section
@@ -111,69 +120,87 @@ const Quiz = ({ showQuizPage, setShowQuizPage, isDesktopScreen }) => {
             }
       }
     >
-      
-        <div className={`quiz-box ${showQuizPage && !showResult ? "active" : ""}`}>
-          <h1>Whizzy Quiz</h1>
-          <div className="quiz-box-header">
-            <span className="quiz-box-header__title">Software Dvpt. Quiz</span>
-            <span className="quiz-box-header__question-no">{`Question: ${
-              currQuestionIdx + 1
-            } / 5`}</span>
+      {!randomQuestions?.length && showLoader ? (
+        <div className={`quiz-loader ${randomQuestions?.length && !showLoader ? "" : "active"}`}>
+          <p>
+            We sincerely apologize for any inconvenience caused by the temporary
+            delay in accessing our website. Our server, hosted on a free tier on
+            render.com, may experience occasional start-up delays due to
+            dormancy resulting from prolonged periods of inactivity. However,
+            rest assured that once initiated, our website operates seamlessly.
+            The quiz page will be displayed automatically upon server
+            initialization. No action is required on your part. Kindly allow us
+            an additional 10 seconds. We kindly ask for your understanding in
+            this matter and hope that you will continue to utilize our services.
+          </p>
+        </div>
+      ) : <></>}
+      <div
+        className={`quiz-box ${
+          showQuizPage && !showResult && randomQuestions?.length ? "active" : ""
+        }`}
+      >
+        <h1>Whizzy Quiz</h1>
+        <div className="quiz-box-header">
+          <span className="quiz-box-header__title">Software Dvpt. Quiz</span>
+          <span className="quiz-box-header__question-no">{`Question: ${
+            currQuestionIdx + 1
+          } / 5`}</span>
+        </div>
+        <div className="quiz-box-question-txt">
+          {randomQuestions?.[currQuestionIdx]?.question}
+        </div>
+        <div className="quiz-box-option-list">
+          {randomQuestions?.[currQuestionIdx]?.options.map((ele, idx) => {
+            return (
+              <div
+                className={`quiz-box-option-list__option ${
+                  selectedQuestionOption?.[currQuestionIdx] === idx
+                    ? "selected"
+                    : ""
+                }`}
+                key={idx}
+                onClick={() => _onOptionClick(idx)}
+              >
+                <span>{ele}</span>
+              </div>
+            );
+          })}
+        </div>
+        <div className="quiz-box-btn-group">
+          <div className="quiz-box-btn-group-exit">
+            <CustomButton
+              bgColor="transparent"
+              txtColor="#0d0de7"
+              hoverBgColor="#0d0de7"
+              hovertxtColor="#fff"
+              border="2px solid #0d0de7"
+              borderRadius="0.5rem"
+              boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
+              txt="Previous"
+              disabled={currQuestionIdx === 0 ? true : false}
+              onClickFunc={() => setCurrQuestionIdx((prevIdx) => prevIdx - 1)}
+            />
           </div>
-          <div className="quiz-box-question-txt">
-            {randomQuestions?.[currQuestionIdx]?.question}
-          </div>
-          <div className="quiz-box-option-list">
-            {randomQuestions?.[currQuestionIdx]?.options.map((ele, idx) => {
-              return (
-                <div
-                  className={`quiz-box-option-list__option ${
-                    selectedQuestionOption?.[currQuestionIdx] === idx
-                      ? "selected"
-                      : ""
-                  }`}
-                  key={idx}
-                  onClick={() => _onOptionClick(idx)}
-                >
-                  <span>{ele}</span>
-                </div>
-              );
-            })}
-          </div>
-          <div className="quiz-box-btn-group">
-            <div className="quiz-box-btn-group-exit">
-              <CustomButton
-                bgColor="transparent"
-                txtColor="#0d0de7"
-                hoverBgColor="#0d0de7"
-                hovertxtColor="#fff"
-                border="2px solid #0d0de7"
-                borderRadius="0.5rem"
-                boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
-                txt="Previous"
-                disabled={currQuestionIdx === 0 ? true : false}
-                onClickFunc={() => setCurrQuestionIdx((prevIdx) => prevIdx - 1)}
-              />
-            </div>
-            <div className="quiz-box-btn-group-continue">
-              <CustomButton
-                bgColor="#0d0de7"
-                txtColor="#fff"
-                hoverBgColor="#2323f4"
-                hovertxtColor="#fff"
-                border="2px solid #0d0de7"
-                borderRadius="0.5rem"
-                boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
-                txt={
-                  currQuestionIdx === randomQuestions?.length - 1
-                    ? "Finish"
-                    : "Next"
-                }
-                onClickFunc={_onNextFinishClick}
-              />
-            </div>
+          <div className="quiz-box-btn-group-continue">
+            <CustomButton
+              bgColor="#0d0de7"
+              txtColor="#fff"
+              hoverBgColor="#2323f4"
+              hovertxtColor="#fff"
+              border="2px solid #0d0de7"
+              borderRadius="0.5rem"
+              boxShadow="0 0 10px rgba(0, 0, 0, 0.1)"
+              txt={
+                currQuestionIdx === randomQuestions?.length - 1
+                  ? "Finish"
+                  : "Next"
+              }
+              onClickFunc={_onNextFinishClick}
+            />
           </div>
         </div>
+      </div>
       {showResult && (
         <div className="quiz-result">
           <h2>Quiz Result!</h2>

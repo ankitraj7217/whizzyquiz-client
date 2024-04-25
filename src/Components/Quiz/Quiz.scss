@@ -228,6 +228,32 @@
       }
     }
   }
+
+  &-loader {
+    position: relative;
+    width: 480px;
+    background-color: transparent;
+    border: 2px solid #0d0de7;
+    border-radius: 6px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px 30px;
+    opacity: 0;
+    transform: scale(0.9);
+    position: absolute;
+
+    p {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 2.25rem;
+    }
+
+    &.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }
 
 
@@ -253,6 +279,10 @@
           font-size: 0.85rem;
         }
       }
+    }
+
+    &-loader {
+      width: 97.5vw;
     }
 
     &-result {
