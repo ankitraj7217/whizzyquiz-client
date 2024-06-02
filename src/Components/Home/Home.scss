@@ -9,6 +9,11 @@
   display: flex;
   flex-direction: column;
 
+  /* AVIF support */
+  @supports (background: url("../../Assets/bg-img.avif")) {
+    background: url("../../Assets/bg-img.avif");
+  }
+
   position: relative;
   transition: 0.5s ease;
 
